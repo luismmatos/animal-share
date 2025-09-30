@@ -20,16 +20,17 @@ export default function HomeScreen() {
 
     const cameraRef = React.useRef(null);
 
+    // Carregar fontes
     const [fontsLoaded] = useFonts({
         Poppins_400Regular,
         Poppins_600SemiBold,
         Poppins_700Bold,
     });
-
     if (!fontsLoaded) {
         return null;
     }
 
+    // Pesquisa de animal
     const handleSearch = async () => {
         if (!query.trim()) {
             Alert.alert('Erro', 'Por favor, digite o nome de um animal');
@@ -54,6 +55,7 @@ export default function HomeScreen() {
         }
     };
 
+    // Abrir câmera
     const openCamera = async () => {
         if (!permission?.granted) {
             const { granted } = await requestPermission();
@@ -65,6 +67,7 @@ export default function HomeScreen() {
         setShowCamera(true);
     };
 
+    // Tirar foto
     const takePicture = async () => {
         if (cameraRef.current) {
             try {
@@ -80,6 +83,7 @@ export default function HomeScreen() {
         }
     };
 
+    // Eliminar foto
     const deletePhoto = () => {
         Alert.alert(
             'Eliminar foto',
@@ -91,6 +95,7 @@ export default function HomeScreen() {
         );
     };
 
+    // Partilhar foto
     const sharePhoto = async () => {
         try {
             await Sharing.shareAsync(capturedPhoto, {
@@ -102,11 +107,13 @@ export default function HomeScreen() {
         }
     };
 
+    // Voltar para a câmara
     const backToCamera = () => {
         setCapturedPhoto(null);
         setShowCamera(true);
     };
     
+    // Voltar para o ecrã inicial
     const backToHome = () => {
         setCapturedPhoto(null);
         setShowCamera(false);
@@ -242,6 +249,7 @@ export default function HomeScreen() {
         </View>
     );
 }
+
 
 const styles = StyleSheet.create({
     container: {
