@@ -103,6 +103,17 @@ export default function HomeScreen() {
         }
     };
 
+    const backToCamera = () => {
+        setCapturedPhoto(null);
+        setShowCamera(true);
+    };
+
+    // ✅ FUNÇÃO ADICIONAL: Voltar para HomeScreen
+    const backToHome = () => {
+        setCapturedPhoto(null);
+        setShowCamera(false);
+    };
+
 
     // Se a câmera estiver aberta
     if (showCamera) {
@@ -161,9 +172,16 @@ export default function HomeScreen() {
                 
                 <TouchableOpacity 
                     style={styles.backButton}
-                    onPress={() => setCapturedPhoto(null)}
+                    onPress={backToCamera}
                 >
                     <Text style={styles.backButtonText}>&#8592; Voltar</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity 
+                    style={styles.homeButton}
+                    onPress={backToHome}
+                >
+                    <Text style={styles.homeButtonText}>&#10005; Sair</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -326,7 +344,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         fontFamily: 'Poppins_400Regular',
     },
-    // ✅ ESTILOS DA CÂMERA CORRIGIDOS
     cameraContainer: {
         flex: 1,
         width: '100%',
@@ -387,7 +404,6 @@ const styles = StyleSheet.create({
         borderRadius: 30,
         backgroundColor: 'white',
     },
-    // Estilos da pré-visualização da foto
     photoPreviewContainer: {
         flex: 1,
         width: '100%',
@@ -440,14 +456,33 @@ const styles = StyleSheet.create({
         position: 'absolute',
         top: 60,
         left: 20,
-        backgroundColor: 'rgba(0,0,0,0.6)',
+        backgroundColor: 'rgba(255,255,255,0.8)',
         paddingVertical: 8,
         paddingHorizontal: 15,
         borderRadius: 20,
     },
     backButtonText: {
-        color: 'white',
+        color: '#333',
         fontSize: 16,
-        fontFamily: 'Poppins_400Regular',
+        fontWeight: 'bold',
+        fontFamily: 'Poppins_600SemiBold',
+    },
+    homeButton: {
+        position: 'absolute',
+        top: 60,
+        right: 20,
+        backgroundColor: 'rgba(255,255,255,0.8)',
+        paddingVertical: 8,
+        paddingHorizontal: 15,
+        borderRadius: 20,
+        borderWidth: 1,
+        borderColor: '#ddd',
+    },
+    homeButtonText: {
+        color: '#333',
+        fontSize: 16,
+        fontWeight: 'bold',
+        fontFamily: 'Poppins_600SemiBold',
+        textAlign: 'center',
     },
 });
