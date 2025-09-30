@@ -27,7 +27,7 @@ export default function HomeScreen() {
     });
 
     if (!fontsLoaded) {
-        return null; // ou um loading spinner
+        return null;
     }
 
 
@@ -118,7 +118,7 @@ export default function HomeScreen() {
                             style={styles.cancelButton}
                             onPress={() => setShowCamera(false)}
                         >
-                            <Text style={styles.cancelText}>✕</Text>
+                            <Text style={styles.cancelText}>&#10005;</Text>
                         </TouchableOpacity>
                         
                         <TouchableOpacity 
@@ -148,14 +148,14 @@ export default function HomeScreen() {
                         style={[styles.actionButton, styles.deleteButton]}
                         onPress={deletePhoto}
                     >
-                        <Text style={styles.deleteButtonText}>🗑️ Eliminar</Text>
+                        <Text style={styles.deleteButtonText}>&#128465; Eliminar</Text>
                     </TouchableOpacity>
                     
                     <TouchableOpacity 
                         style={[styles.actionButton, styles.shareButton]}
                         onPress={sharePhoto}
                     >
-                        <Text style={styles.shareButtonText}>📤 Partilhar</Text>
+                        <Text style={styles.shareButtonText}>&#128228; Partilhar</Text>
                     </TouchableOpacity>
                 </View>
                 
@@ -163,7 +163,7 @@ export default function HomeScreen() {
                     style={styles.backButton}
                     onPress={() => setCapturedPhoto(null)}
                 >
-                    <Text style={styles.backButtonText}>← Voltar</Text>
+                    <Text style={styles.backButtonText}>&#8592; Voltar</Text>
                 </TouchableOpacity>
             </View>
         );
@@ -204,7 +204,7 @@ export default function HomeScreen() {
                             style={styles.refreshButton}
                             onPress={() => handleSearch()}
                         >
-                            <Text style={styles.refreshText}>🔄 Nova imagem</Text>
+                            <Text style={styles.refreshText}>&#128260; Nova imagem</Text>
                         </TouchableOpacity>
                     </View>
                 ) : (
