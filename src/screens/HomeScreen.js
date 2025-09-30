@@ -30,7 +30,6 @@ export default function HomeScreen() {
         return null;
     }
 
-
     const handleSearch = async () => {
         if (!query.trim()) {
             Alert.alert('Erro', 'Por favor, digite o nome de um animal');
