@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, ActivityIndicator, Alert } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, TextInput, Image, Alert } from "react-native";
 
 import { useFonts, Poppins_400Regular, Poppins_600SemiBold, Poppins_700Bold } from '@expo-google-fonts/poppins';
 
@@ -107,13 +107,11 @@ export default function HomeScreen() {
         setCapturedPhoto(null);
         setShowCamera(true);
     };
-
-    // ✅ FUNÇÃO ADICIONAL: Voltar para HomeScreen
+    
     const backToHome = () => {
         setCapturedPhoto(null);
         setShowCamera(false);
     };
-
 
     // Se a câmera estiver aberta
     if (showCamera) {
@@ -194,7 +192,7 @@ export default function HomeScreen() {
                 <Text style={styles.icon}>&#128269;</Text>
                 <TextInput 
                     style={styles.input}
-                    placeholder="Search for animals..."
+                    placeholder="Procurar animais..."
                     value={query}
                     onChangeText={setQuery}
                     onSubmitEditing={handleSearch}
@@ -204,7 +202,10 @@ export default function HomeScreen() {
 
             <View style={styles.centerContent}>
                 {loading ? (
-                    <ActivityIndicator size="large" color="#333" />
+                    <View style={styles.loadingContainer}>
+                        <Text style={styles.loadingEmoji}>🐾</Text>
+                        <Text style={styles.loadingText}>A procurar {query}...</Text>
+                    </View>
                 ) : animalImage ? (
                     <View style={styles.imageContainer}>
                         <Image 
@@ -247,7 +248,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
-        backgroundColor: '#fdfdfd',
+        backgroundColor: '#e8e8e8ff',
         paddingTop: 60,
         paddingHorizontal: 20,
         paddingBottom: 40,
@@ -257,7 +258,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     title: {
-        fontSize: 28,
+        fontSize: 30,
         fontWeight: 'bold',
         marginBottom: 30,
         color: '#333',
@@ -266,15 +267,16 @@ const styles = StyleSheet.create({
     searchBox: {
         flexDirection: 'row',
         alignItems: 'center',
-        width: '90%',
-        borderWidth: 1,
-        borderColor: '#ccc',
-        borderRadius: 10,
+        width: '80%',
+        borderWidth: 1.5,
+        borderColor: '#8b8b8bff',
+        borderRadius: 15,
+        backgroundColor: '#f5f5f5',
         paddingHorizontal: 10,
         marginBottom: 40,
     },
     icon: {
-        fontSize: 20,
+        fontSize: 18,
         marginRight: 5,
     },
     input: {
@@ -286,17 +288,17 @@ const styles = StyleSheet.create({
         width: 80,
         height: 80,
         borderRadius: 40,
-        backgroundColor: '#e5e5e5ff',
+        backgroundColor: '#f5f5f5',
         justifyContent: 'center',
         alignItems: 'center',
         shadowColor: '#000',
-        shadowOpacity: 0.15,
+        shadowOpacity: 0.35,
         shadowOffset: { width: 0, height: 3 },
         shadowRadius: 4,
         elevation: 4,
     },
     circleText: {
-        fontSize: 28,
+        fontSize: 40,
     },
     centerContent: {
         flex: 1,
@@ -310,8 +312,8 @@ const styles = StyleSheet.create({
     animalImage: {
         width: 250,
         height: 250,
-        borderRadius: 15,
-        marginBottom: 15,
+        borderRadius: 25,
+        marginBottom: 25,
     },
     imageCaption: {
         fontSize: 20,
@@ -326,17 +328,16 @@ const styles = StyleSheet.create({
         fontSize: 12,
         color: '#666',
         textAlign: 'center',
-        fontStyle: 'italic',
-        marginBottom: 10,
+        marginBottom: 20,
         fontFamily: 'Poppins_400Regular',
     },
     refreshButton: {
         backgroundColor: '#f0f0f0',
         paddingHorizontal: 20,
         paddingVertical: 8,
-        borderRadius: 20,
-        borderWidth: 1,
-        borderColor: '#ddd',
+        borderRadius: 15,
+        borderWidth: 1.5,
+        borderColor: '#8b8b8bff',
     },
     refreshText: {
         fontSize: 14,
@@ -362,7 +363,7 @@ const styles = StyleSheet.create({
         right: 0,
         height: 150,
         flexDirection: 'row',
-        backgroundColor: 'rgba(0,0,0,0.3)',
+        backgroundColor: 'rgba(0, 0, 0, 0.35)',
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: 40,
@@ -484,5 +485,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontFamily: 'Poppins_600SemiBold',
         textAlign: 'center',
+    },
+    loadingContainer: {
+        alignItems: 'center',
+        marginTop: 20,
+    },
+    loadingEmoji: {
+        fontSize: 50,
+    },
+    loadingText: {
+        fontSize: 18,
+        color: '#333',
+        marginTop: 10,
+        fontFamily: 'Poppins_400Regular',
     },
 });
